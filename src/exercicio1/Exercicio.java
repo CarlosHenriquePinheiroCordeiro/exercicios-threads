@@ -28,9 +28,6 @@ public class Exercicio {
 		for (Corredor corredor : corredores) {
 			corredor.start();
 		}
-		for (Corredor corredor : corredores) {
-			corredor.run();
-		}
 	}
 	
 	
