@@ -1,34 +1,19 @@
 package exercicio2;
 
-public class Semaforo extends Thread {
+public class Semaforo {
 
 	private int numero;
-	private boolean aberto;
-	
-	@Override
-	public void run() {
-		Thread.currentThread();
-		while (true) {
-			printEstado();
-			trocaEstado();
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+	private boolean aberto = false;
 	
 	public void printEstado() {
 		String mensagem = "Semáforo "+getNumero()+" está aberto";
 		if (!isAberto()) 
 			mensagem = "Semáforo "+getNumero()+" está fechado";
-		System.out.println("\n"+mensagem);
+		System.out.println(mensagem);
 	}
 	
-	public Semaforo(int numero, boolean isAberto) {
+	public Semaforo(int numero) {
 		setNumero(numero);
-		setAberto(isAberto);
 	}
 
 	public int getNumero() {
@@ -39,8 +24,9 @@ public class Semaforo extends Thread {
 		this.numero = numero;
 	}
 	
-	protected void trocaEstado() {
+	public synchronized void trocaEstado() {
 		setAberto(!isAberto());
+		notifyAll();
 	}
 
 	public boolean isAberto() {

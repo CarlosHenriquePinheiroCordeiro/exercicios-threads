@@ -56,7 +56,7 @@ public class Exercicio extends JFrame {
 		final Marcador m2 = new Marcador(valorB);
 		
 		JButton btnStartA = new JButton("Start A");
-		btnStartA.setBounds(11, 46, 67, 23);
+		btnStartA.setBounds(11, 46, 79, 23);
 		btnStartA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!m1.isIniciado()) {
@@ -69,7 +69,7 @@ public class Exercicio extends JFrame {
 		contentPane.add(btnStartA);
 		
 		JButton btnStartB = new JButton("Start B");
-		btnStartB.setBounds(10, 102, 67, 23);
+		btnStartB.setBounds(10, 102, 80, 23);
 		btnStartB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!m2.isIniciado()) {
@@ -81,7 +81,7 @@ public class Exercicio extends JFrame {
 		contentPane.add(btnStartB);
 		
 		JButton btnPauseA = new JButton("Pause A");
-		btnPauseA.setBounds(88, 46, 76, 23);
+		btnPauseA.setBounds(92, 46, 85, 23);
 		btnPauseA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				m1.pausaContagem();
@@ -90,7 +90,7 @@ public class Exercicio extends JFrame {
 		contentPane.add(btnPauseA);
 		
 		JButton btnPauseB = new JButton("Pause B");
-		btnPauseB.setBounds(89, 102, 76, 23);
+		btnPauseB.setBounds(92, 102, 85, 23);
 		btnPauseB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				m2.pausaContagem();
@@ -108,7 +108,7 @@ public class Exercicio extends JFrame {
 		contentPane.add(btnStopA);
 		
 		JButton btnStopB = new JButton("Stop B");
-		btnStopB.setBounds(182, 102, 76, 23);
+		btnStopB.setBounds(180, 102, 76, 23);
 		btnStopB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				m2.paraContagem();
