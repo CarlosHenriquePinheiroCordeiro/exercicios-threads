@@ -9,12 +9,14 @@ public class Caldeirao {
 		encher();
 	}
 	
-	public boolean comePorcao() {
-		boolean comeu = porcoes > 0;
-		if (comeu) {
+	public synchronized boolean servir() throws InterruptedException {
+		boolean serviu = porcoes > 0;
+		if (serviu) {
 			porcoes--;
 		}
-		return comeu;
+		Thread.sleep(1000);
+		System.out.println("Restam "+porcoes+" porções no caldeirão.");
+		return serviu;
 	}
 	
 	public void encher() {

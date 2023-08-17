@@ -9,26 +9,30 @@ public class Cozinheiro {
 		this.caldeirao = c;
 	}
 	
-	public boolean encherCaldeirao() {
+	public synchronized boolean encherCaldeirao() throws InterruptedException {
 		acordar();
 		encher();
 		dormir();
 		return true;
 	}
 	
-	protected void acordar() {
-		dormindo = false;
+	protected void acordar() throws InterruptedException {
+		System.out.println("O cozinheiro está acordando");
+		Thread.sleep(1000);
 		System.out.println("O cozinheiro acordou.");
+		dormindo = false;
 	}
 	
-	protected void encher() {
-		System.out.println("O cozinheiro está enchendo o caldeirão");
+	protected void encher() throws InterruptedException {
+		System.out.println("O cozinheiro está preparando as porções enchendo o caldeirão");
+		Thread.sleep(5000);
 		caldeirao.encher();
 	}
 	
-	protected void dormir() {
+	protected void dormir() throws InterruptedException {
 		dormindo = true;
 		System.out.println("O cozinheiro voltou a dormir.");
+		Thread.sleep(1000);
 	}
 
 }

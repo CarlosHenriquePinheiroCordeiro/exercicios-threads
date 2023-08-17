@@ -1,6 +1,6 @@
 package jantar_selvagens;
 
-public class Selvagem extends Thread {
+public class Selvagem {
 
 	private int numero;
 	private Caldeirao caldeirao;
@@ -10,10 +10,14 @@ public class Selvagem extends Thread {
 		this.numero = n;
 	}
 	
-	@Override
-	public void run() {
-		
-		super.run();
+	public synchronized boolean servir() throws InterruptedException {
+		System.out.println("Selvagem "+numero+" está se servindo...");
+		return caldeirao.servir();
+	}
+	
+	public void comer() throws InterruptedException {
+		System.out.println("Selvagem "+numero+" está comendo...\n");
+		Thread.sleep(3000);
 	}
 	
 	
