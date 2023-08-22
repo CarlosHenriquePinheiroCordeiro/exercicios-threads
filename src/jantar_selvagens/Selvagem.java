@@ -1,23 +1,25 @@
 package jantar_selvagens;
 
-public class Selvagem {
+public class Selvagem implements Runnable {
 
-	private int numero;
-	private Caldeirao caldeirao;
+	private static Jantar jantar;
 	
-	public Selvagem(Caldeirao caldeirao, int n) {
-		this.caldeirao = caldeirao;
-		this.numero = n;
+	public Selvagem(Jantar j, int n) {
+		jantar = j;
+		new Thread(this, "Selvagem "+n).start();;
 	}
 	
-	public synchronized boolean servir() throws InterruptedException {
-		System.out.println("Selvagem "+numero+" está se servindo...");
-		return caldeirao.servir();
+	@Override
+	public void run() {
+		try {
+			jantar.jantar();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public void comer() throws InterruptedException {
-		System.out.println("Selvagem "+numero+" está comendo...\n");
-		Thread.sleep(3000);
+	public void tchan() {
+		
 	}
 	
 	

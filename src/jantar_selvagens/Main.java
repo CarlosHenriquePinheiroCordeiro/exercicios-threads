@@ -3,10 +3,13 @@ package jantar_selvagens;
 public class Main {
 
 	public static void main(String[] args) throws InterruptedException {
-		Caldeirao caldeirao = new Caldeirao();
-		Cozinheiro c = new Cozinheiro(caldeirao);
-		Selvagem[] s = {new Selvagem(caldeirao, 1), new Selvagem(caldeirao, 2), new Selvagem(caldeirao, 3), new Selvagem(caldeirao, 4)};
-		new Jantar(s, c).start();;
+		Caldeirao  caldeirao = new Caldeirao();
+		Jantar 	   jantar    = new Jantar(caldeirao);
+		new Cozinheiro(jantar);
+		new Selvagem(jantar, 1);
+		new Selvagem(jantar, 2);
+		new Selvagem(jantar, 3);
+		
 	}
 
 

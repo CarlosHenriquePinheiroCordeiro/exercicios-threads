@@ -1,32 +1,24 @@
 package jantar_selvagens;
 
-public class Jantar extends Thread {
+public class Jantar {
 
-	private Selvagem[] selvagens;
-	private Cozinheiro cozinheiro;
+	private static Caldeirao  caldeirao;
 	
-	public Jantar(Selvagem[] selvagens, Cozinheiro cozinheiro) throws InterruptedException {
-		this.selvagens = selvagens;
-		this.cozinheiro = cozinheiro;
+	public Jantar(Caldeirao caldeirao) throws InterruptedException {
+		Jantar.caldeirao  = caldeirao;
 	}
 	
-	@Override
-	public void run() {
-		int i = 0;
+	public void jantar() throws InterruptedException {
 		while (true) {
-			try {
-				if (selvagens[i].servir()) {
-					selvagens[i].comer();
-					i++;
-				} else {
-					cozinheiro.encherCaldeirao();
-				}
-				if (i == selvagens.length)
-					i = 0;
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			System.out.println(Thread.currentThread().getName()+" está comendo...");
+			Thread.yield();
+			System.out.println("\n"+Thread.currentThread().getName()+" está se servindo...");
+			caldeirao.servir();
 		}
+	}
+
+	public static Caldeirao getCaldeirao() {
+		return caldeirao;
 	}
 	
 	
