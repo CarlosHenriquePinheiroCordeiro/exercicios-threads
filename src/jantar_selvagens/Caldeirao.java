@@ -3,20 +3,21 @@ package jantar_selvagens;
 public class Caldeirao {
 	
 	private static int maximoPorcoes = 5;
-	private static int porcoes;
+	private static int porcoes = 0;
 	
 	public Caldeirao() {
 		encher();
 	}
 	
-	public boolean servir() throws InterruptedException {
-		boolean serviu = porcoes > 0;
-		if (serviu) {
-			Thread.sleep(3000);
+	public synchronized boolean servir() throws InterruptedException {
+		boolean servir = porcoes > 0;
+		if (servir) {
+			Thread.sleep(1000);
 			porcoes--;
-//			System.out.println("Restam "+porcoes+" porções no caldeirão.");
+			System.out.println("Restam "+porcoes+" porções no caldeirão.");
+			Thread.sleep(1000);
 		}
-		return serviu;
+		return servir;
 	}
 	
 	public void encher() {

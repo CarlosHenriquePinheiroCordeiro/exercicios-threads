@@ -2,40 +2,29 @@ package jantar_selvagens;
 
 public class Cozinheiro implements Runnable {
 	
-	private static Jantar jantar;
+	private Caldeirao caldeirao;
 	
-	public Cozinheiro(Jantar j) {
-		Cozinheiro.jantar = j;
-		new Thread(this).start();
+	public Cozinheiro(Caldeirao caldeirao) {
+		this.caldeirao = caldeirao;
 	}
 
 	@Override
 	public void run() {
-		Thread.currentThread();
 		while (true) {
-//			if (jantar.getCaldeirao().getPorcoes() == 0) {
-//				try {
-//					encherCaldeirao();
-//				} catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
-//			}
-			System.out.println("PORÇÕES: "+jantar.getCaldeirao().getPorcoes());
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			synchronized (caldeirao) {
+				try {
+					if (caldeirao.getPorcoes() <= 0) {
+						acordar();
+						preparar();
+						encher();
+						dormir();
+						caldeirao.notifyAll();
+					}
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}				
 			}
 		}
-	}
-	
-	public synchronized boolean encherCaldeirao() throws InterruptedException {
-		acordar();
-		preparar();
-		encher();
-		dormir();
-		return true;
 	}
 	
 	protected void acordar() throws InterruptedException {
@@ -52,7 +41,7 @@ public class Cozinheiro implements Runnable {
 	protected void encher() throws InterruptedException {
 		System.out.println("O cozinheiro está enchendo o caldeirão");
 		Thread.sleep(6000);
-		jantar.getCaldeirao().encher();
+		caldeirao.encher();
 	}
 	
 	protected void dormir() throws InterruptedException {
