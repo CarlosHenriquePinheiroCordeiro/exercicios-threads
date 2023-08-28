@@ -7,7 +7,8 @@ public class Tarefa implements Runnable {
 	private String nome;
 	private int tempo;
 	private TimeUnit tipoTempo = null;
-	private boolean executada = false;
+	private boolean executada  = false;
+	private boolean agendada   = false;
 	
 	public Tarefa(int n) {
 		this.nome = "Tarefa "+n;
@@ -66,6 +67,14 @@ public class Tarefa implements Runnable {
 
 	public void setExecutada(boolean executada) {
 		this.executada = executada;
+	}
+
+	public boolean isAgendada() {
+		return agendada;
+	}
+
+	public void setAgendada(boolean agendada) {
+		this.agendada = agendada;
 	}
 	
 
