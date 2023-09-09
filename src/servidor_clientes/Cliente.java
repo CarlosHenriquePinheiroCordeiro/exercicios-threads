@@ -18,6 +18,8 @@ public class Cliente {
 			ClienteThread clienteThread = new ClienteThread(cliente);
 			new Thread(clienteThread).start();
 			do {
+				System.out.println("Informe um comando:");
+				System.out.println("verSequencia (Visualiza o número atual da(s) sequência(s) de Fibonacci)\\nnew\\nsleep\\nwait\\nnotify");
 				texto = sc.nextLine();
 				saida.println(texto);
 			} while (!"sair".equals(texto));
