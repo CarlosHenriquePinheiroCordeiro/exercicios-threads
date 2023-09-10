@@ -27,10 +27,12 @@ public class ServidorThread extends Thread {
 				if (inputCliente.equals("sair")) {
 					break;
 				}
-				saida.println(servico.executaComando(inputCliente));
+				String[] input = inputCliente.split(",");
+				saida.println("Executando "+input[0]);
+				saida.println(servico.executaComando(input[0], Integer.parseInt(input[1])));
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			saida.println(e.getMessage());
 		}
 	}
 	

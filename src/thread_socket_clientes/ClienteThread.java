@@ -1,4 +1,4 @@
-package servidor_clientes;
+package thread_socket_clientes;
 
 import java.io.BufferedReader;
 import java.io.IOException;

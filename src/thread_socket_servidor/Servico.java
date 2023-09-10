@@ -5,9 +5,16 @@ import java.util.Hashtable;
 
 public class Servico {
 
+	private Fibonacci fb;
 	private ArrayList<ThreadFibonacci> th = new ArrayList<ThreadFibonacci>();
+	private int indice;
 	
-	public String executaComando(String comando) {
+	public Servico() {
+		this.fb = new Fibonacci();
+	}
+	
+	public String executaComando(String comando, int indice) {
+		this.indice = indice;
 		return getComando(comando).executa(this);
 	}
 	
@@ -30,35 +37,25 @@ public class Servico {
 	}
 	
 	public String comandoVerSequencia() {
-		String retorno = "";
-		for (int i = 0; i < this.th.size(); i++) {
-			retorno += "Sequência "+i+": "+th.get(i).getSequencia()+".\n";
-		}
-		return retorno;
+		return ""+fb.getSequencia();
 	}
 	
 	public void comandoNew() {
-		ThreadFibonacci t = new ThreadFibonacci();
+		ThreadFibonacci t = new ThreadFibonacci(fb);
 		th.add(t);
 		t.start();
 	}
 	
 	public void comandoSleep() throws InterruptedException {
-		for (ThreadFibonacci t : th) {
-			t.sleep(10000);
-		}
+		th.get(indice).dorme();
 	}
 	
 	public void comandoWait() throws InterruptedException {
-		for (ThreadFibonacci t : th) {
-			t.wait();
-		}
+		th.get(indice).espera();
 	}
 	
 	public void comandoNotify() {
-		for (ThreadFibonacci t : th) {
-			t.notify();
-		}
+		th.get(indice).notifica();
 	}
 	
 	
